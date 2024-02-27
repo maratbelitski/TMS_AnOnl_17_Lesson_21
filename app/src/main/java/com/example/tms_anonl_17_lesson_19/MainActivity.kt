@@ -1,9 +1,9 @@
 package com.example.tms_anonl_17_lesson_19
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.textfield.TextInputEditText
 import java.util.Date
@@ -16,7 +16,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var name: TextInputEditText
     private lateinit var description: TextInputEditText
 
-    private val newListNote = mutableListOf<Note>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,20 +33,19 @@ class MainActivity : AppCompatActivity() {
         myAdapter.onNoteClick = {
             Toast.makeText(
                 this,
-                "Name note: ${it.name}\n Favorite: ${it.isFavorite}",
+                "Name note: ${it.name}\nFavorite: ${it.isFavorite}",
                 Toast.LENGTH_SHORT).show()
         }
 
-        myAdapter.onNoteLongClick = {
-            val newNote = it.copy(isFavorite = true)
+        myAdapter.onGroupClick = {
+            Toast.makeText(
+                this,
+                "Group notes: ${it.name}", Toast.LENGTH_SHORT).show()
+        }
 
-            if (!it.isFavorite) {
-                addNewNoteInList(newNote)
-                newListNote.remove(it)
-            } else {
-                addNewNoteInList(newNote)
-                newListNote.remove(it)
-            }
+        myAdapter.onNoteLongClick = {
+            SingletonListNotes.changeNote(it)
+            myAdapter.notifyItemChanged(myAdapter.itemCount)  //сообщаем об обновлении
         }
     }
 
@@ -65,15 +63,18 @@ class MainActivity : AppCompatActivity() {
         val nameText = name.text.toString().trim()
         val descriptionText = description.text.toString().trim()
 
-        val newNote = Note(nameText, descriptionText, date = Date().toString(), isFavorite = false)
-        addNewNoteInList(newNote)
+        val newItem = if (descriptionText.isEmpty()) {
+            Group(nameText)
+        } else {
+            Note(nameText, descriptionText, Date().toString(), false)
+        }
+
+        SingletonListNotes.insertNote(newItem)
+        myAdapter.listItems = SingletonListNotes.getListNote()
+
+        myAdapter.notifyItemInserted(myAdapter.itemCount)   //сообщаем об обновлении
 
         name.text?.clear()
         description.text?.clear()
-    }
-
-    private fun addNewNoteInList(newNote: Note) {
-        newListNote.add(newNote)
-        myAdapter.listNote = newListNote
     }
 }

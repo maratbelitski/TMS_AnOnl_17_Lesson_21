@@ -1,59 +1,57 @@
 package com.example.tms_anonl_17_lesson_19
 
-import android.text.Layout
-import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
-class MyNoteAdapter : RecyclerView.Adapter<MyNoteViewHolder>() {
+class MyNoteAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    companion object {
+        private const val NO_FAVORITE = 0
+        private const val FAVORITE = 1
+        private const val IS_GROUP = 2
+    }
 
-    var onNoteClick: ((Note) -> Unit)? = null
-    var onNoteLongClick: ((Note) -> Unit)? = null
+    var listItems = listOf<ListItems>()
 
-    var listNote = mutableListOf<Note>()
-        set(value) {
-            field = value
-            notifyDataSetChanged()
-        }
+    lateinit var onNoteClick: ((Note) -> Unit)
+    lateinit var onNoteLongClick: ((Note) -> Unit)
+    lateinit var onGroupClick: ((Group) -> Unit)
 
     override fun getItemViewType(position: Int): Int {
-        return if (listNote[position].isFavorite){
-            1
-        } else {
-            0
+
+        return when (listItems[position]) {
+            is Group -> IS_GROUP
+            is Note -> {
+                val note = listItems[position] as Note
+                if (note.isFavorite) {
+                    FAVORITE
+                } else {
+                    NO_FAVORITE
+                }
+            }
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyNoteViewHolder {
-        val layout: Int
-        if (viewType == 1) {
-            layout = R.layout.note_item_favorite
-        } else {
-            layout = R.layout.note_item
-        }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
 
-        val view = LayoutInflater.from(parent.context)
-            .inflate(layout, parent, false)
-        return MyNoteViewHolder(view)
+        return when (viewType) {
+            FAVORITE -> MyNoteViewHolder.from(parent, viewType)
+            NO_FAVORITE -> MyNoteViewHolder.from(parent, viewType)
+            IS_GROUP -> MyGroupViewHolder.from(parent)
+            else -> throw IllegalStateException()
+        }
     }
 
-    override fun getItemCount() = listNote.size
+    override fun getItemCount() = listItems.size
 
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        val item = listItems[position]
 
-    override fun onBindViewHolder(holder: MyNoteViewHolder, position: Int) {
-        val note = listNote[position]
-
-        holder.name.text = note.name
-        holder.description.text = note.description
-        holder.date.text = note.date
-
-        holder.itemView.setOnClickListener {
-            onNoteClick?.invoke(note)
+        if (item is Note && holder is MyNoteViewHolder) {
+            holder.bind(item, onNoteClick, onNoteLongClick)
         }
 
-        holder.itemView.setOnLongClickListener {
-            onNoteLongClick?.invoke(note)
-            true
+        if (item is Group && holder is MyGroupViewHolder) {
+            holder.bind(item, onGroupClick)
         }
     }
 }

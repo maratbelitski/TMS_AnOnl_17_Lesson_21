@@ -4,6 +4,6 @@
     <string name="description">Description</string>
     <string name="name">Name</string>
     <string name="date">Date:</string>
-    <string name="name_hint">Name:</string>
+    <string name="name_hint">Name group:</string>
     <string name="description_hint">Description:</string>
 </resources>

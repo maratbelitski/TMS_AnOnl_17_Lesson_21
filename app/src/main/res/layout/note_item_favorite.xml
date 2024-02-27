@@ -22,6 +22,7 @@
         android:layout_height="wrap_content"
         android:padding="8dp"
         android:textStyle="bold"
+        android:textColor="@color/black"
         android:text="@string/name_hint"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -31,6 +32,7 @@
         android:id="@+id/input_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="@+id/textView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView2"
@@ -44,6 +46,7 @@
         android:padding="8dp"
         android:text="@string/description_hint"
         android:textStyle="bold"
+        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
@@ -52,6 +55,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:text="description"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
@@ -63,6 +67,7 @@
         android:padding="8dp"
         android:textStyle="bold"
         android:text="@string/date"
+        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/input_description" />
 
@@ -72,6 +77,7 @@
         android:layout_height="wrap_content"
         android:padding="4dp"
         tools:text="12.12.2024"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="@+id/textView7"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView7"
