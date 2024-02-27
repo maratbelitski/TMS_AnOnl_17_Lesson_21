@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">TMS_AnOnl_17_Lesson_19</string>
+    <string name="save">SAVE</string>
+    <string name="description">Description</string>
+    <string name="name">Name</string>
+    <string name="date">Date:</string>
+    <string name="name_hint">Name:</string>
+    <string name="description_hint">Description:</string>
+</resources>
