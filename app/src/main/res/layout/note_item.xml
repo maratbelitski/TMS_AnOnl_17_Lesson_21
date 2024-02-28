@@ -28,7 +28,7 @@
                 android:layout_height="wrap_content"
                 android:padding="@dimen/padding_size_normal"
                 android:textSize="@dimen/text_size_normal"
-                android:text="@string/name_hint"
+                android:text="@string/name"
                 android:textStyle="bold"
                 android:textColor="@color/black"
                 app:layout_constraintStart_toStartOf="parent"
