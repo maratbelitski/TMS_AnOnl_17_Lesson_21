@@ -12,9 +12,9 @@ class MyNoteAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     var listItems = listOf<ListItems>()
 
-    lateinit var onNoteClick: ((Note) -> Unit)
-    lateinit var onNoteLongClick: ((Note) -> Unit)
-    lateinit var onGroupClick: ((Group) -> Unit)
+    var onNoteClick: ((Note) -> Unit)? = null
+    var onNoteLongClick: ((Note) -> Unit)? = null
+    var onGroupClick: ((Group) -> Unit)? = null
 
     override fun getItemViewType(position: Int): Int {
 

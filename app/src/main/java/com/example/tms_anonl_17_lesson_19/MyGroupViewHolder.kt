@@ -18,11 +18,11 @@ class MyGroupViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
 
     private val name: TextView = itemView.findViewById(R.id.input_name)
-    fun bind(group: Group, click:(Group)->Unit) {
+    fun bind(group: Group, click: ((Group) -> Unit)?) {
         name.text = group.name
 
         itemView.setOnClickListener {
-            click.invoke(group)
+            click?.invoke(group)
         }
     }
 }

@@ -25,18 +25,18 @@ class MyNoteViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private val description: TextView = itemView.findViewById(R.id.input_description)
     private val date: TextView = itemView.findViewById(R.id.tv_date)
 
-    fun bind(note: Note, click: (Note) -> Unit, longClick: (Note) -> Unit) {
+    fun bind(note: Note, click: ((Note) -> Unit)?, longClick: ((Note) -> Unit)?) {
         name.text = note.name
         description.text = note.description
         date.text = note.date
 
         itemView.setOnLongClickListener {
-            longClick.invoke(note)
+            longClick?.invoke(note)
             true
         }
 
         itemView.setOnClickListener {
-            click.invoke(note)
+            click?.invoke(note)
         }
     }
 }
