@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.tms_anonl_17_lesson_19"
+    namespace = "com.example.tms_anonl_17_lesson_20"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.tms_anonl_17_lesson_19"
+        applicationId = "com.example.tms_anonl_17_lesson_20"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
