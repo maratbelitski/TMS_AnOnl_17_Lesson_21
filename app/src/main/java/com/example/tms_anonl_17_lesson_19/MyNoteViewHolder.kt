@@ -10,21 +10,14 @@ class MyNoteViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     companion object {
         private const val FAVORITE = 1
         fun from(parent: ViewGroup, viewType: Int): MyNoteViewHolder {
-            return when (viewType) {
-                FAVORITE -> {
-                    MyNoteViewHolder(
-                        LayoutInflater.from(parent.context)
-                            .inflate(R.layout.note_item_favorite, parent, false)
-                    )
-                }
 
-                else -> {
-                    MyNoteViewHolder(
-                        LayoutInflater.from(parent.context)
-                            .inflate(R.layout.note_item, parent, false)
-                    )
-                }
+            val layout = when (viewType) {
+                FAVORITE -> R.layout.note_item_favorite
+                else -> R.layout.note_item
             }
+            return MyNoteViewHolder(
+                LayoutInflater.from(parent.context).inflate(layout, parent, false)
+            )
         }
     }
 

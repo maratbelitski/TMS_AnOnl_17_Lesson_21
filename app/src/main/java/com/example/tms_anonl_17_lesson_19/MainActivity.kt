@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         myAdapter.onNoteLongClick = {
-            SingletonListNotes.changeNote(it)
+            SingletonListItems.changeNote(it)
             myAdapter.notifyItemChanged(myAdapter.itemCount)  //сообщаем об обновлении
         }
     }
@@ -53,6 +53,7 @@ class MainActivity : AppCompatActivity() {
         recycler = findViewById(R.id.recycler)
         myAdapter = MyNoteAdapter()
         recycler.adapter = myAdapter
+        myAdapter.listItems = SingletonListItems.getListItems()
 
         btnSave = findViewById(R.id.btn_save)
         name = findViewById(R.id.et_name)
@@ -69,8 +70,8 @@ class MainActivity : AppCompatActivity() {
             Note(nameText, descriptionText, Date().toString(), false)
         }
 
-        SingletonListNotes.insertNote(newItem)
-        myAdapter.listItems = SingletonListNotes.getListNote()
+        SingletonListItems.insertItems(newItem)
+        myAdapter.listItems = SingletonListItems.getListItems()
 
         myAdapter.notifyItemInserted(myAdapter.itemCount)   //сообщаем об обновлении
 

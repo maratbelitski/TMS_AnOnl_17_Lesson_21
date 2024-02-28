@@ -1,12 +1,12 @@
 package com.example.tms_anonl_17_lesson_19
 
-object SingletonListNotes {
+object SingletonListItems {
 
     private val newListNote = mutableListOf<ListItems>()
-    fun insertNote(item: ListItems) {
+    fun insertItems(item: ListItems) {
         newListNote.add(item)
     }
-    fun getListNote(): List<ListItems> {
+    fun getListItems(): List<ListItems> {
         return newListNote
     }
     fun changeNote(note: Note) {
