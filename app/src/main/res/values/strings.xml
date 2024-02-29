@@ -6,4 +6,5 @@
     <string name="date">Date:</string>
     <string name="name_hint">Name group:</string>
     <string name="description_hint">Description:</string>
+    <string name="error_message">Problem in onCreateViewHolder</string>
 </resources>
