@@ -1,8 +1,14 @@
 package com.example.tms_anonl_17_lesson_21.adapter
 
+import android.content.Context
+import android.content.res.Resources
+import android.content.res.Resources.Theme
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.example.tms_anonl_17_lesson_21.R
 import com.example.tms_anonl_17_lesson_21.pojo.Group
 import com.example.tms_anonl_17_lesson_21.databinding.NoteItemGroupBinding
 

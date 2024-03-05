@@ -8,6 +8,7 @@ import com.example.tms_anonl_17_lesson_21.pojo.Note
 import com.example.tms_anonl_17_lesson_21.adapter.MyNoteAdapter
 import com.example.tms_anonl_17_lesson_21.databinding.ActivityMainBinding
 import com.example.tms_anonl_17_lesson_21.pojo.Group
+import com.example.tms_anonl_17_lesson_21.pojo.ListItems
 import java.util.Date
 import java.util.UUID
 
@@ -25,7 +26,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun doListeners() {
-        with(binding){
+        with(binding) {
             btnSave.setOnClickListener {
                 createNewNote()
             }
@@ -34,18 +35,22 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(
                     this@MainActivity,
                     "Name note: ${it.name}\nFavorite: ${it.isFavorite}",
-                    Toast.LENGTH_SHORT).show()
+                    Toast.LENGTH_SHORT
+                ).show()
             }
 
             myAdapter.onNoteLongClick = {
                 SingletonListItems.changeNote(it)
-                myAdapter.notifyItemChanged(myAdapter.itemCount)  //сообщаем об обновлении
+                // myAdapter.notifyItemChanged(myAdapter.itemCount)  //сообщаем об обновлении
+                //не правильно работает
+                myAdapter.submitList(ArrayList(SingletonListItems.getListItems()))
             }
 
             myAdapter.onGroupClick = {
                 Toast.makeText(
                     this@MainActivity,
-                    "Group notes: ${it.name}", Toast.LENGTH_SHORT).show()
+                    "Group notes: ${it.name}", Toast.LENGTH_SHORT
+                ).show()
             }
         }
     }
@@ -53,23 +58,23 @@ class MainActivity : AppCompatActivity() {
     private fun initViews() {
         myAdapter = MyNoteAdapter()
         binding.recycler.adapter = myAdapter
-        myAdapter.submitList(SingletonListItems.getListItems())
+        myAdapter.submitList(ArrayList(SingletonListItems.getListItems()))
     }
 
     private fun createNewNote() {
-        with(binding){
+        with(binding) {
             val nameText = etName.text.toString().trim()
             val descriptionText = etDescription.text.toString().trim()
 
             val newItem = if (descriptionText.isEmpty()) {
-                Group(UUID.randomUUID().toString(),nameText)
+                Group(nameText)
             } else {
-                Note(UUID.randomUUID().toString(),nameText, descriptionText, Date().toString(), false)
+                Note(nameText, descriptionText, false)
             }
 
             SingletonListItems.insertItems(newItem)
-            myAdapter.submitList(SingletonListItems.getListItems())
-            myAdapter.notifyItemInserted(myAdapter.itemCount)   //сообщаем об обновлении
+            myAdapter.submitList(ArrayList(SingletonListItems.getListItems()))
+            // myAdapter.notifyItemInserted(myAdapter.itemCount)   //сообщаем об обновлении
 
             etName.text?.clear()
             etDescription.text?.clear()
