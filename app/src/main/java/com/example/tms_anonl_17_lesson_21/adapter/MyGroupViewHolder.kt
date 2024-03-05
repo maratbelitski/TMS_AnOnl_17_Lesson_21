@@ -1,10 +1,10 @@
-package com.example.tms_anonl_17_lesson_20.adapter
+package com.example.tms_anonl_17_lesson_21.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.tms_anonl_17_lesson_20.pojo.Group
-import com.example.tms_anonl_17_lesson_20.databinding.NoteItemGroupBinding
+import com.example.tms_anonl_17_lesson_21.pojo.Group
+import com.example.tms_anonl_17_lesson_21.databinding.NoteItemGroupBinding
 
 class MyGroupViewHolder(private val binding: NoteItemGroupBinding) :
     RecyclerView.ViewHolder(binding.root) {

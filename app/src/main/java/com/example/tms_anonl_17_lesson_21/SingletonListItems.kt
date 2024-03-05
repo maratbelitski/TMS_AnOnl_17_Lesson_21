@@ -1,7 +1,7 @@
 package com.example.tms_anonl_17_lesson_20
 
-import com.example.tms_anonl_17_lesson_20.pojo.ListItems
-import com.example.tms_anonl_17_lesson_20.pojo.Note
+import com.example.tms_anonl_17_lesson_21.pojo.ListItems
+import com.example.tms_anonl_17_lesson_21.pojo.Note
 
 object SingletonListItems {
 
@@ -9,7 +9,7 @@ object SingletonListItems {
     fun insertItems(item: ListItems) {
         newListNote.add(item)
     }
-    fun getListItems(): List<ListItems> {
+    fun getListItems(): MutableList<ListItems> {
         return newListNote
     }
     fun changeNote(note: Note) {

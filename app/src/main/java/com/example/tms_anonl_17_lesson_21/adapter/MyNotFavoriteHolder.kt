@@ -1,10 +1,11 @@
-package com.example.tms_anonl_17_lesson_20.adapter
+package com.example.tms_anonl_17_lesson_21.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.tms_anonl_17_lesson_20.pojo.Note
-import com.example.tms_anonl_17_lesson_20.databinding.NoteItemBinding
+import com.example.tms_anonl_17_lesson_21.pojo.Note
+
+import com.example.tms_anonl_17_lesson_21.databinding.NoteItemBinding
 
 class MyNotFavoriteHolder(private val binding: NoteItemBinding) :
     RecyclerView.ViewHolder(binding.root) {
