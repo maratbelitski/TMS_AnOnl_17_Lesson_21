@@ -25,12 +25,15 @@ class MyGroupViewHolder(private val binding: NoteItemGroupBinding) :
     }
 
     fun bind(group: Group, click: ((Group) -> Unit)?) {
-        binding.inputName.text = group.name
+        with(binding){
+            inputName.text = group.name
 
-        //смена цветов представления через контекст
-        binding.cardNote.backgroundTintList =
-            ColorStateList.valueOf(ContextCompat.getColor(itemView.context,R.color.card_back_group_blue))
-        binding.inputName.setTextColor(ContextCompat.getColor(itemView.context,R.color.white))
+            //смена цветов представления через контекст
+            cardNote.backgroundTintList =
+                ColorStateList.valueOf(ContextCompat.getColor(itemView.context,R.color.card_back_group_blue))
+
+            inputName.setTextColor(ContextCompat.getColor(itemView.context,R.color.white))
+        }
 
         itemView.setOnClickListener {
             click?.invoke(group)
