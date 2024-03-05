@@ -41,8 +41,7 @@ class MainActivity : AppCompatActivity() {
 
             myAdapter.onNoteLongClick = {
                 SingletonListItems.changeNote(it)
-                // myAdapter.notifyItemChanged(myAdapter.itemCount)  //сообщаем об обновлении
-                //не правильно работает
+                myAdapter.notifyItemChanged(myAdapter.itemCount)  //сообщаем об обновлении
                 myAdapter.submitList(ArrayList(SingletonListItems.getListItems()))
             }
 
@@ -74,7 +73,6 @@ class MainActivity : AppCompatActivity() {
 
             SingletonListItems.insertItems(newItem)
             myAdapter.submitList(ArrayList(SingletonListItems.getListItems()))
-            // myAdapter.notifyItemInserted(myAdapter.itemCount)   //сообщаем об обновлении
 
             etName.text?.clear()
             etDescription.text?.clear()
